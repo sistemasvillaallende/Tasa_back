@@ -176,7 +176,7 @@ namespace Tasa_back.Services
         {
             try
             {
-                return ListarCategoriasTasa();
+                return Ctasctes_inmuebles.ListarCategoriasTasa();
             }
             catch (Exception)
             {

@@ -6,12 +6,12 @@ namespace Tasa_back.Entities.AUDITORIA
 {
     public class AuditoriaD : DALBase
     {
-        public static void InsertAuditoria(SqlConnection cn, SqlTransaction trx, Auditoria oAudita)
+        public static void InsertAuditoria(Auditoria oAudita,SqlConnection con, SqlTransaction trx)
         {
             try
             {
                 DateTimeFormatInfo culturaFecArgentina = new CultureInfo("es-AR", false).DateTimeFormat;
-                SqlCommand cmd = cn.CreateCommand();
+                SqlCommand cmd = con.CreateCommand();
                 cmd.Transaction = trx;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "AUDITOR_V2";

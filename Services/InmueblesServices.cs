@@ -11,9 +11,9 @@ namespace Tasa_back.Services
                 return Inmuebles.GetInmueblesPaginado(buscarPor, strParametro,
                     registro_desde, registro_hasta);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public Inmuebles getByPk(
@@ -24,9 +24,9 @@ namespace Tasa_back.Services
                 return Entities.Inmuebles.getByPk(circunscripcion, seccion, 
                     manzana, parcela, p_h);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -37,9 +37,9 @@ namespace Tasa_back.Services
                 return Entities.Inmuebles.armoDenominacion(cir, sec,
                     man, par, p_h);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -50,9 +50,9 @@ namespace Tasa_back.Services
                 return Entities.Inmuebles.armoDenominacion2(cir, sec,
                     man, par, p_h);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -63,9 +63,9 @@ namespace Tasa_back.Services
                 return Entities.Inmuebles.armoDenominacion3(cir, sec,
                     man, par, p_h);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }
