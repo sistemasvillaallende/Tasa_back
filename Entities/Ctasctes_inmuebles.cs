@@ -252,38 +252,38 @@ namespace Tasa_back.Entities
                         }
                         if (lst.Count > 0)
                             obj = lst[0];
-                        strRetorno.AppendLine("Fecha Transacción: " + Convert.ToString(obj.fecha_transaccion, culturaFecArgentina));
+                        strRetorno.AppendLine("Fecha Transacciï¿½n: " + Convert.ToString(obj.fecha_transaccion, culturaFecArgentina));
                         strRetorno.AppendLine("Vencimiento: " + Convert.ToString(obj.vencimiento, culturaFecArgentina));
                         switch (obj.tipo_transaccion)
                         {
                             case 1:
                                 strRetorno.AppendLine("Mov.Deuda");
-                                strRetorno.AppendLine("Período: " + obj.periodo);
+                                strRetorno.AppendLine("Perï¿½odo: " + obj.periodo);
                                 strRetorno.AppendLine(obj.des_categoria.ToString());
                                 if (obj.pago_parcial)
                                     strRetorno.AppendLine("Deuda con Pago Parcial");
-                                strRetorno.AppendLine("Nro Transacción: " + obj.nro_transaccion.ToString());
+                                strRetorno.AppendLine("Nro Transacciï¿½n: " + obj.nro_transaccion.ToString());
                                 break;
                             case 2:
                                 if (obj.nro_cedulon != 0)
-                                    strRetorno.AppendLine("Mov.Pago con Nº Cedulon:" + obj.nro_cedulon.ToString());
+                                    strRetorno.AppendLine("Mov.Pago con Nï¿½ Cedulon:" + obj.nro_cedulon.ToString());
                                 else
                                     strRetorno.AppendLine("Mov.Pago");
-                                strRetorno.AppendLine("Período:" + obj.periodo.ToString());
+                                strRetorno.AppendLine("Perï¿½odo:" + obj.periodo.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 if (obj.pago_parcial)
                                     strRetorno.AppendLine("Pago Parcial");
-                                strRetorno.AppendLine("Nro Transacción: " + obj.nro_transaccion.ToString());
+                                strRetorno.AppendLine("Nro Transacciï¿½n: " + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine("Monto Pagado:" + obj.monto_pagado.ToString());
                                 break;
                             case 3:
                                 strRetorno.AppendLine("Mov.Fin de Plan de Pago");
-                                strRetorno.AppendLine("Plan de Pago Nº:" + obj.nro_plan.ToString());
+                                strRetorno.AppendLine("Plan de Pago Nï¿½:" + obj.nro_plan.ToString());
                                 strRetorno.AppendLine("Nro Transaccion:" + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
                             case 4:
-                                strRetorno.AppendLine("Mov.Bonificación por pago anticipado");
+                                strRetorno.AppendLine("Mov.Bonificaciï¿½n por pago anticipado");
                                 strRetorno.AppendLine("Nro Transaccion:" + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
@@ -298,18 +298,18 @@ namespace Tasa_back.Entities
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
                             case 7:
-                                strRetorno.AppendLine("Mov.Cancelación Operativa");
+                                strRetorno.AppendLine("Mov.Cancelaciï¿½n Operativa");
                                 strRetorno.AppendLine("Nro Transaccion:" + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
                             case 8:
-                                strRetorno.AppendLine("Mov.Decreto o Resolución");
+                                strRetorno.AppendLine("Mov.Decreto o Resoluciï¿½n");
                                 strRetorno.AppendLine("Nro Transaccion:" + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
                             case 9:
                                 strRetorno.AppendLine("Mov.Baja de Plan de Pagos");
-                                strRetorno.AppendLine("Plan de Pago Nº:" + obj.nro_plan.ToString());
+                                strRetorno.AppendLine("Plan de Pago Nï¿½:" + obj.nro_plan.ToString());
                                 strRetorno.AppendLine("Nro Transaccion:" + obj.nro_transaccion.ToString());
                                 strRetorno.AppendLine(obj.des_categoria);
                                 break;
@@ -828,7 +828,7 @@ namespace Tasa_back.Entities
             }
         }
 
-        public static List<Combo> ListarCategoriasAuto()
+        public static List<Combo> ListarCategoriasTasa()
         {
             try
             {

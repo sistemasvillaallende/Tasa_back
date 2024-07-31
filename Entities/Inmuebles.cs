@@ -467,6 +467,45 @@ namespace Tasa_back.Entities
         }
 
         public static Inmuebles getByPk(
+        int circunscripcion, int seccion, int manzana, int parcela, int p_h, SqlConnection con, SqlTransaction trx)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("SELECT *FROM Inmuebles WHERE");
+                sql.AppendLine("circunscripcion = @circunscripcion");
+                sql.AppendLine("AND seccion = @seccion");
+                sql.AppendLine("AND manzana = @manzana");
+                sql.AppendLine("AND parcela = @parcela");
+                sql.AppendLine("AND p_h = @p_h");
+                Inmuebles obj = null;
+                //using (SqlConnection con = GetConnection())
+                // {
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.Transaction = trx;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sql.ToString();
+                    cmd.Parameters.AddWithValue("@circunscripcion", circunscripcion);
+                    cmd.Parameters.AddWithValue("@seccion", seccion);
+                    cmd.Parameters.AddWithValue("@manzana", manzana);
+                    cmd.Parameters.AddWithValue("@parcela", parcela);
+                    cmd.Parameters.AddWithValue("@p_h", p_h);
+                    //cmd.Connection.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    List<Inmuebles> lst = mapeo(dr);
+                    if (lst.Count != 0)
+                        obj = lst[0];
+                //}
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public static Inmuebles getByPk(
         int circunscripcion, int seccion, int manzana, int parcela, int p_h)
         {
             try
@@ -480,7 +519,7 @@ namespace Tasa_back.Entities
                 sql.AppendLine("AND p_h = @p_h");
                 Inmuebles obj = null;
                 using (SqlConnection con = GetConnection())
-                {
+                 {
                     SqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sql.ToString();
@@ -497,9 +536,9 @@ namespace Tasa_back.Entities
                 }
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

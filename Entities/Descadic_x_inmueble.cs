@@ -112,9 +112,9 @@ namespace Tasa_back.Entities
                     return lst;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public static List<Descadic_x_inmueble> getByPk(
@@ -197,7 +197,7 @@ namespace Tasa_back.Entities
             }
         }
 
-        public static int insert(Descadic_x_inmueble obj)
+        public static int insert(Descadic_x_inmueble obj, SqlConnection con, SqlTransaction trx)
         {
             try
             {
@@ -237,9 +237,10 @@ namespace Tasa_back.Entities
                 sql.AppendLine(", @anio_desde");
                 sql.AppendLine(", @anio_hasta");
                 sql.AppendLine(")");
-                using (SqlConnection con = GetConnection())
-                {
+                //using (SqlConnection con = GetConnection())
+                //{
                     SqlCommand cmd = con.CreateCommand();
+                    cmd.Transaction = trx;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sql.ToString();
                     cmd.Parameters.AddWithValue("@circunscripcion", obj.circunscripcion);
@@ -257,17 +258,17 @@ namespace Tasa_back.Entities
                     cmd.Parameters.AddWithValue("@observaciones", obj.observaciones);
                     cmd.Parameters.AddWithValue("@anio_desde", obj.anio_desde);
                     cmd.Parameters.AddWithValue("@anio_hasta", obj.anio_hasta);
-                    cmd.Connection.Open();
+                    //cmd.Connection.Open();
                     return cmd.ExecuteNonQuery();
-                }
+                //}
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
-        public static void update(Descadic_x_inmueble obj)
+        public static void update(Descadic_x_inmueble obj, SqlConnection con, SqlTransaction trx)
         {
             try
             {
@@ -289,9 +290,10 @@ namespace Tasa_back.Entities
                 sql.AppendLine("AND parcela=@parcela");
                 sql.AppendLine("AND p_h=@p_h");
                 sql.AppendLine("AND cod_concepto_inmueble=@cod_concepto_inmueble");
-                using (SqlConnection con = GetConnection())
-                {
+                //using (SqlConnection con = GetConnection())
+                //{
                     SqlCommand cmd = con.CreateCommand();
+                    cmd.Transaction = trx;
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sql.ToString();
                     cmd.Parameters.AddWithValue("@circunscripcion", obj.circunscripcion);
@@ -309,17 +311,17 @@ namespace Tasa_back.Entities
                     cmd.Parameters.AddWithValue("@observaciones", obj.observaciones);
                     cmd.Parameters.AddWithValue("@anio_desde", obj.anio_desde);
                     cmd.Parameters.AddWithValue("@anio_hasta", obj.anio_hasta);
-                    cmd.Connection.Open();
+                    //cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
-                }
+               // }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
-        public static void delete(Descadic_x_inmueble obj)
+        public static void delete(Descadic_x_inmueble obj, SqlConnection con, SqlTransaction trx)
         {
             try
             {
@@ -332,10 +334,11 @@ namespace Tasa_back.Entities
                 sql.AppendLine("AND parcela=@parcela");
                 sql.AppendLine("AND p_h=@p_h");
                 sql.AppendLine("AND cod_concepto_inmueble=@cod_concepto_inmueble");
-                using (SqlConnection con = GetConnection())
-                {
+                // using (SqlConnection con = GetConnection())
+                // {
                     SqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = CommandType.Text;
+                    cmd.Transaction = trx;
                     cmd.CommandText = sql.ToString();
                     cmd.Parameters.AddWithValue("@circunscripcion", obj.circunscripcion);
                     cmd.Parameters.AddWithValue("@seccion", obj.seccion);
@@ -343,13 +346,13 @@ namespace Tasa_back.Entities
                     cmd.Parameters.AddWithValue("@parcela", obj.parcela);
                     cmd.Parameters.AddWithValue("@p_h", obj.p_h);
                     cmd.Parameters.AddWithValue("@cod_concepto_inmueble", obj.cod_concepto_inmueble);
-                    cmd.Connection.Open();
+                    //cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
-                }
+                //}
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

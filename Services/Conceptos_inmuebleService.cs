@@ -16,9 +16,9 @@ namespace Tasa_back.Services
             {
                 return Conceptos_inmueble.getByPk(cod_concepto_inmueble);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public List<Conceptos_inmueble> read()
@@ -27,9 +27,9 @@ namespace Tasa_back.Services
             {
                 return Conceptos_inmueble.read();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public int insert(Conceptos_inmueble obj)
@@ -38,9 +38,9 @@ namespace Tasa_back.Services
             {
                 return Conceptos_inmueble.insert(obj);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public void update(Conceptos_inmueble obj)
@@ -49,9 +49,9 @@ namespace Tasa_back.Services
             {
                 Conceptos_inmueble.update(obj);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw ex;
+                throw ;
             }
         }
         public void delete(Conceptos_inmueble obj)
@@ -60,9 +60,9 @@ namespace Tasa_back.Services
             {
                 Conceptos_inmueble.delete(obj);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }
