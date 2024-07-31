@@ -481,20 +481,20 @@ namespace Tasa_back.Entities
                 Inmuebles obj = null;
                 //using (SqlConnection con = GetConnection())
                 // {
-                    SqlCommand cmd = con.CreateCommand();
-                    cmd.Transaction = trx;
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = sql.ToString();
-                    cmd.Parameters.AddWithValue("@circunscripcion", circunscripcion);
-                    cmd.Parameters.AddWithValue("@seccion", seccion);
-                    cmd.Parameters.AddWithValue("@manzana", manzana);
-                    cmd.Parameters.AddWithValue("@parcela", parcela);
-                    cmd.Parameters.AddWithValue("@p_h", p_h);
-                    //cmd.Connection.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    List<Inmuebles> lst = mapeo(dr);
-                    if (lst.Count != 0)
-                        obj = lst[0];
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = trx;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = sql.ToString();
+                cmd.Parameters.AddWithValue("@circunscripcion", circunscripcion);
+                cmd.Parameters.AddWithValue("@seccion", seccion);
+                cmd.Parameters.AddWithValue("@manzana", manzana);
+                cmd.Parameters.AddWithValue("@parcela", parcela);
+                cmd.Parameters.AddWithValue("@p_h", p_h);
+                //cmd.Connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<Inmuebles> lst = mapeo(dr);
+                if (lst.Count != 0)
+                    obj = lst[0];
                 //}
                 return obj;
             }
@@ -519,7 +519,7 @@ namespace Tasa_back.Entities
                 sql.AppendLine("AND p_h = @p_h");
                 Inmuebles obj = null;
                 using (SqlConnection con = GetConnection())
-                 {
+                {
                     SqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = sql.ToString();
@@ -933,6 +933,31 @@ namespace Tasa_back.Entities
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+
+        public static int Count()       
+        {
+            try
+            {
+                int count = 0;
+                string sql = @"SELECT count(*)        
+                               FROM Inmuebles (nolock)";
+
+                using (SqlConnection con = GetConnection())
+                {
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = sql;
+                    cmd.Connection.Open();
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

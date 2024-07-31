@@ -1,4 +1,6 @@
-﻿using Tasa_back.Entities;
+﻿using System.Data;
+using System.Data.SqlClient;
+using Tasa_back.Entities;
 namespace Tasa_back.Services
 {
     public class InmueblesServices:IInmueblesService
@@ -68,5 +70,21 @@ namespace Tasa_back.Services
                 throw;
             }
         }
+
+        public int Count()
+        {
+            try
+            {
+                return Entities.Inmuebles.Count();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+
+
     }
 }

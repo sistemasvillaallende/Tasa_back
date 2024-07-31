@@ -12,5 +12,6 @@ namespace Tasa_back.Services
         public string armoDenominacion(int cir, int sec, int man, int par, int p_h);
         public string armoDenominacion2(int cir, int sec, int man, int par, int p_h);
         public string armoDenominacion3(int cir, int sec, int man, int par, int p_h);
+        public int Count();
     }
 }

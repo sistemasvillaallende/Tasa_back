@@ -18,7 +18,7 @@ namespace Tasa_back.Controllers
         }
 
         [HttpGet]
-        public PaginadorGenerico<Entities.Inmuebles> GetInmueblesPaginado(string buscarPor = "", 
+        public PaginadorGenerico<Entities.Inmuebles> GetInmueblesPaginado(string buscarPor = "",
             string strParametro = "", int pagina = 0, int registros_por_pagina = 10)
         {
             List<Entities.Inmuebles> _Inmueble;
@@ -26,9 +26,19 @@ namespace Tasa_back.Controllers
 
             int _TotalRegistros = 0;
             int _TotalPaginas = 0;
+            _TotalRegistros = _InmueblesService.Count();
 
-            _Inmueble = _InmueblesService.GetInmueblesPaginado(buscarPor, strParametro, pagina,
-                registros_por_pagina);
+            Console.WriteLine(_TotalRegistros);
+
+            if (pagina == 0)
+            {
+                _Inmueble = _InmueblesService.GetInmueblesPaginado(buscarPor, strParametro, pagina, registros_por_pagina);
+            }
+            else
+            {
+                _Inmueble = _InmueblesService.GetInmueblesPaginado(buscarPor, strParametro, (pagina * registros_por_pagina) - registros_por_pagina + 1,
+                                                                            pagina * registros_por_pagina);
+            }
 
             if (_Inmueble != null && _Inmueble.Count() > 0)
             {
@@ -95,7 +105,7 @@ namespace Tasa_back.Controllers
                 return null;
         }
         [HttpGet]
-        public Entities.Inmuebles getByPk (
+        public Entities.Inmuebles getByPk(
     int circunscripcion, int seccion, int manzana, int parcela, int p_h)
         {
             try
