@@ -36,10 +36,10 @@ namespace Tasa_back.Entities
             pago_a_cuenta = 0;
             nro_proc = 0;
         }
-        public static List<LstDeudaTasa> getListDeudaTasa(int cir, int sec, 
+        public static List<LstDeudaTasa> getListDeudaTasa(int cir, int sec,
             int man, int par, int p_h)
         {
-            List<LstDeudaTasa> oLstAuto = new List<LstDeudaTasa>();
+            List<LstDeudaTasa> oLstDeudaTasa = new List<LstDeudaTasa>();
             SqlCommand cmd;
             SqlDataReader dr;
             SqlConnection cn = null;
@@ -101,39 +101,39 @@ namespace Tasa_back.Entities
 
                 while (dr.Read())
                 {
-                    LstDeudaTasa oAuto = new LstDeudaTasa();
+                    LstDeudaTasa oDeudaTasa = new LstDeudaTasa();
                     if (!dr.IsDBNull(dr.GetOrdinal("periodo")))
-                    { oAuto.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
+                    { oDeudaTasa.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("monto_original")))
-                    { oAuto.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
+                    { oDeudaTasa.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("debe")))
-                    { oAuto.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
+                    { oDeudaTasa.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("vencimiento")))
                     {
-                        oAuto.vencimiento = dr.GetDateTime(
+                        oDeudaTasa.vencimiento = dr.GetDateTime(
                         dr.GetOrdinal("vencimiento")).ToShortDateString();
                     }
                     if (!dr.IsDBNull(dr.GetOrdinal("des_categoria")))
-                    { oAuto.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
+                    { oDeudaTasa.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pagado")))
-                    { oAuto.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
+                    { oDeudaTasa.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_transaccion")))
-                    { oAuto.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
+                    { oDeudaTasa.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("categoria_deuda")))
-                    { oAuto.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
+                    { oDeudaTasa.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("recargo")))
-                    { oAuto.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
+                    { oDeudaTasa.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon_paypertic")))
-                    { oAuto.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
+                    { oDeudaTasa.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
 
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_parcial")))
-                    { oAuto.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
+                    { oDeudaTasa.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_a_cuenta")))
-                    { oAuto.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
+                    { oDeudaTasa.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("NRO_PROCURACION")))
-                    { oAuto.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
+                    { oDeudaTasa.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
 
-                    oLstAuto.Add(oAuto);
+                    oLstDeudaTasa.Add(oDeudaTasa);
                 }
             }
             catch (Exception e)
@@ -142,12 +142,12 @@ namespace Tasa_back.Entities
                 throw e;
             }
             finally { cn.Close(); }
-            return oLstAuto;
+            return oLstDeudaTasa;
         }
         public static List<LstDeudaTasa> getListDeudaTasaNoVencida(int cir, int sec,
             int man, int par, int p_h)
         {
-            List<LstDeudaTasa> oLstAuto = new List<LstDeudaTasa>();
+            List<LstDeudaTasa> oLstDeudaTasa = new List<LstDeudaTasa>();
             SqlCommand cmd;
             SqlDataReader dr;
             SqlConnection cn = null;
@@ -209,38 +209,38 @@ namespace Tasa_back.Entities
 
                 while (dr.Read())
                 {
-                    LstDeudaTasa oAuto = new LstDeudaTasa();
+                    LstDeudaTasa oDeudaTasa = new LstDeudaTasa();
                     if (!dr.IsDBNull(dr.GetOrdinal("periodo")))
-                    { oAuto.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
+                    { oDeudaTasa.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("monto_original")))
-                    { oAuto.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
+                    { oDeudaTasa.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("debe")))
-                    { oAuto.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
+                    { oDeudaTasa.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("vencimiento")))
                     {
-                        oAuto.vencimiento = dr.GetDateTime(
+                        oDeudaTasa.vencimiento = dr.GetDateTime(
                         dr.GetOrdinal("vencimiento")).ToShortDateString();
                     }
                     if (!dr.IsDBNull(dr.GetOrdinal("des_categoria")))
-                    { oAuto.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
+                    { oDeudaTasa.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pagado")))
-                    { oAuto.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
+                    { oDeudaTasa.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_transaccion")))
-                    { oAuto.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
+                    { oDeudaTasa.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("categoria_deuda")))
-                    { oAuto.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
+                    { oDeudaTasa.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("recargo")))
-                    { oAuto.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
-                    if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon_paypertic")))
-                    { oAuto.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
+                    { oDeudaTasa.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
+                    if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon_payperticDeudaTasa")))
+                    { oDeudaTasa.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
 
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_parcial")))
-                    { oAuto.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
+                    { oDeudaTasa.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_a_cuenta")))
-                    { oAuto.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
+                    { oDeudaTasa.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("NRO_PROCURACION")))
-                    { oAuto.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
-                    oLstAuto.Add(oAuto);
+                    { oDeudaTasa.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
+                    oLstDeudaTasa.Add(oDeudaTasa);
                 }
             }
             catch (Exception e)
@@ -249,12 +249,12 @@ namespace Tasa_back.Entities
                 throw e;
             }
             finally { cn.Close(); }
-            return oLstAuto;
+            return oLstDeudaTasa;
         }
         public static List<LstDeudaTasa> getListDeudaTasaProcurada(int cir, int sec,
             int man, int par, int p_h)
         {
-            List<LstDeudaTasa> oLstTasa = new List<LstDeudaTasa>();
+            List<LstDeudaTasa> oLstDeudaTasa = new List<LstDeudaTasa>();
             SqlCommand cmd;
             SqlDataReader dr;
             SqlConnection cn = null;
@@ -314,40 +314,43 @@ namespace Tasa_back.Entities
 
                 dr = cmd.ExecuteReader();
 
+                Console.WriteLine("Reader executed, has rows: " + dr.HasRows);
+
+
                 while (dr.Read())
                 {
-                    LstDeudaTasa oAuto = new LstDeudaTasa();
+                    LstDeudaTasa oDeudaTasa = new LstDeudaTasa();
                     if (!dr.IsDBNull(dr.GetOrdinal("periodo")))
-                    { oAuto.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
+                    { oDeudaTasa.periodo = dr.GetString(dr.GetOrdinal("periodo")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("monto_original")))
-                    { oAuto.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
+                    { oDeudaTasa.monto_original = dr.GetDecimal(dr.GetOrdinal("monto_original")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("debe")))
-                    { oAuto.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
+                    { oDeudaTasa.debe = dr.GetDecimal(dr.GetOrdinal("debe")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("vencimiento")))
                     {
-                        oAuto.vencimiento = dr.GetDateTime(
+                        oDeudaTasa.vencimiento = dr.GetDateTime(
                         dr.GetOrdinal("vencimiento")).ToShortDateString();
                     }
                     if (!dr.IsDBNull(dr.GetOrdinal("des_categoria")))
-                    { oAuto.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
+                    { oDeudaTasa.desCategoria = dr.GetString(dr.GetOrdinal("des_categoria")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pagado")))
-                    { oAuto.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
+                    { oDeudaTasa.pagado = 0; }//Convert.ToInt32(dr.GetSqlBinary(dr.GetOrdinal("pagado"))); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_transaccion")))
-                    { oAuto.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
+                    { oDeudaTasa.nroTtransaccion = dr.GetInt32(dr.GetOrdinal("nro_transaccion")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("categoria_deuda")))
-                    { oAuto.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
+                    { oDeudaTasa.categoriaDeuda = dr.GetInt32(dr.GetOrdinal("categoria_deuda")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("recargo")))
-                    { oAuto.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
+                    { oDeudaTasa.recargo = dr.GetDecimal(dr.GetOrdinal("recargo")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("nro_cedulon_paypertic")))
-                    { oAuto.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
+                    { oDeudaTasa.nro_cedulon_paypertic = dr.GetInt64(dr.GetOrdinal("nro_cedulon_paypertic")); }
 
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_parcial")))
-                    { oAuto.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
+                    { oDeudaTasa.pago_parcial = dr.GetBoolean(dr.GetOrdinal("pago_parcial")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("pago_a_cuenta")))
-                    { oAuto.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
+                    { oDeudaTasa.pago_a_cuenta = dr.GetDecimal(dr.GetOrdinal("pago_a_cuenta")); }
                     if (!dr.IsDBNull(dr.GetOrdinal("NRO_PROCURACION")))
-                    { oAuto.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
-                    oLstTasa.Add(oAuto);
+                    { oDeudaTasa.nro_proc = dr.GetInt32(dr.GetOrdinal("NRO_PROCURACION")); }
+                    oLstDeudaTasa.Add(oDeudaTasa);
                 }
             }
             catch (Exception e)
@@ -355,8 +358,15 @@ namespace Tasa_back.Entities
                 Console.WriteLine("Error in query!" + e.ToString());
                 throw e;
             }
-            finally { cn.Close(); }
-            return oLstTasa;
+            finally
+            {
+                if (cn != null && cn.State == ConnectionState.Open)
+                {
+                    cn.Close();
+                    Console.WriteLine("Connection closed.");
+                };
+            }
+            return oLstDeudaTasa;
         }
     }
 }

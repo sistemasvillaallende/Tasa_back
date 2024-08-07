@@ -10,12 +10,15 @@ namespace Tasa_back.Controllers
     public class InmueblesController : Controller
     {
         DateTimeFormatInfo culturaFecArgentina = new CultureInfo("es-AR", false).DateTimeFormat;
-        private IInmueblesService _InmueblesService;
+        private  IInmueblesService _InmueblesService;
 
         public InmueblesController(IInmueblesService InmueblesService)
         {
             _InmueblesService = InmueblesService;
+
         }
+
+        
 
         [HttpGet]
         public PaginadorGenerico<Entities.Inmuebles> GetInmueblesPaginado(string buscarPor = "",
@@ -24,11 +27,12 @@ namespace Tasa_back.Controllers
             List<Entities.Inmuebles> _Inmueble;
             PaginadorGenerico<Entities.Inmuebles> _PaginadorInmueble;
 
-            int _TotalRegistros = 0;
+            
             int _TotalPaginas = 0;
-            _TotalRegistros = _InmueblesService.Count();
+            int _TotalRegistros = 0;
 
-            Console.WriteLine(_TotalRegistros);
+            _TotalRegistros = _InmueblesService.Count();
+            _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / registros_por_pagina);
 
             if (pagina == 0)
             {
@@ -42,8 +46,7 @@ namespace Tasa_back.Controllers
 
             if (_Inmueble != null && _Inmueble.Count() > 0)
             {
-                _TotalRegistros = _Inmueble[0].total_row;
-                _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / registros_por_pagina);
+
                 _PaginadorInmueble = new PaginadorGenerico<Entities.Inmuebles>()
                 {
                     RegistrosPorPagina = registros_por_pagina,
@@ -113,9 +116,8 @@ namespace Tasa_back.Controllers
                 return _InmueblesService.getByPk(circunscripcion, seccion,
                     manzana, parcela, p_h);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-
                 throw;
             }
         }

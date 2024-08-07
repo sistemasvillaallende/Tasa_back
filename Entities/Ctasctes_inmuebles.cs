@@ -363,9 +363,9 @@ namespace Tasa_back.Entities
                 }
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public static List<Ctasctes_inmuebles> ListarCtacte(
