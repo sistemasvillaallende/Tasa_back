@@ -62,12 +62,13 @@ namespace Tasa_back.Entities
                     cmd.Connection.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     lst = mapeo(dr);
+                    
                     return lst;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -94,9 +95,9 @@ namespace Tasa_back.Entities
                 }
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw ;
             }
         }
 

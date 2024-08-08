@@ -952,6 +952,7 @@ namespace Tasa_back.Entities
                     cmd.CommandText = sql;
                     cmd.Connection.Open();
                     count = Convert.ToInt32(cmd.ExecuteScalar());
+
                     return count;
                 }
             }

@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using Tasa_back.Entities;
 namespace Tasa_back.Services
 {
-    public class InmueblesServices:IInmueblesService
+    public class InmueblesServices : IInmueblesService
     {
         public List<Inmuebles> GetInmueblesPaginado(string buscarPor, string strParametro,
             int registro_desde, int registro_hasta)
@@ -23,7 +23,7 @@ namespace Tasa_back.Services
         {
             try
             {
-                return Entities.Inmuebles.getByPk(circunscripcion, seccion, 
+                return Entities.Inmuebles.getByPk(circunscripcion, seccion,
                     manzana, parcela, p_h);
             }
             catch (Exception)
@@ -75,11 +75,13 @@ namespace Tasa_back.Services
         {
             try
             {
-                return Entities.Inmuebles.Count();
+                int count = Entities.Inmuebles.Count();
+                return count;
+                //return Entities.Inmuebles.Count();
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
